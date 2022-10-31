@@ -1,13 +1,16 @@
-import { useState } from 'react'
 import './card-form.styles.scss'
+import { useState, useContext } from 'react'
+import { CardsDataContext } from '../../contexts/cards-data.context'
 
-const CardForm = ({ addCard }) => {
+const CardForm = () => {
   const [name, setName] = useState('')
   const [job, setJob] = useState('')
   const [country, setCountry] = useState('')
   const [age, setAge] = useState('')
   const [netWorth, setNetWorth] = useState('')
   const [missingValues, setMissingValues] = useState([])
+
+  const { setCardsInfo } = useContext(CardsDataContext)
 
   const resetForm = () => {
     setName('')
@@ -33,7 +36,7 @@ const CardForm = ({ addCard }) => {
     findEmptyInputs()
 
     if (name && job && country && age && netWorth) {
-      addCard(cards => [
+      setCardsInfo(cards => [
         ...cards,
         {
           id: cards.length + 1,

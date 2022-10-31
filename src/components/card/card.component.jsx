@@ -1,7 +1,7 @@
 import './card.styles.scss'
 
-const Card = ({ personInfo }) => {
-  const { name, job, country, age, netWorth } = personInfo
+const Card = ({ cardInfo }) => {
+  const { name, job, country, age, netWorth } = cardInfo
 
   return (
     <div className='card'>

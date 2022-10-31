@@ -1,17 +1,16 @@
-import { useState } from 'react'
-import { cardData } from './data/card-data.jsx'
-import CardForm from './components/card-form/card-form.component'
-import CardList from './components/card-list/card-list.component'
-import './App.css'
+import { CardsDataProvider } from './contexts/cards-data.context'
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/home/home.component'
+import AddUser from './pages/adduser/adduser.component'
 
 function App() {
-  const [cardInfo, setCardInfo] = useState(cardData)
-  console.log(cardInfo)
   return (
-    <div className='app'>
-      <CardForm addCard={setCardInfo} />
-      <CardList peopleInfo={cardInfo} />
-    </div>
+    <CardsDataProvider>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='adduser' element={<AddUser />} />
+      </Routes>
+    </CardsDataProvider>
   )
 }
 

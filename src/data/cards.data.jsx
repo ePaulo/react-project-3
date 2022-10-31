@@ -1,4 +1,4 @@
-const cardData = [
+const cardsData = [
   {
     id: 1,
     name: 'John Mayer',
@@ -33,4 +33,4 @@ const cardData = [
   },
 ]
 
-export { cardData }
+export { cardsData }
