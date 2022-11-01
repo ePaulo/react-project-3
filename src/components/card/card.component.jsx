@@ -1,25 +1,27 @@
 import './card.styles.scss'
 
 const Card = ({ cardInfo }) => {
-  const { name, job, country, age, netWorth } = cardInfo
+  const { name, email, address, website, company } = cardInfo
 
-  return (
-    <div className='card'>
-      <h2>{name}</h2>
-      <p>
-        <b>Job:</b> {job}
+  const cardElement = (
+    <div className='card-container'>
+      <h2 className='name'>{name}</h2>
+      <p className='email'>
+        <b>Email:</b> {email}
       </p>
-      <p>
-        <b>Country:</b> {country}
+      <p className='city'>
+        <b>City:</b> {address.city}
       </p>
-      <p>
-        <b>Age:</b> {age}
+      <p className='website'>
+        <b>Website:</b> {website}
       </p>
-      <p>
-        <b>Net Worth:</b> {netWorth}M
+      <p className='company'>
+        <b>Company:</b> {company.name}
       </p>
     </div>
   )
+
+  return cardElement
 }
 
 export default Card
