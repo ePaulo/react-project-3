@@ -17,5 +17,3 @@ const CardsList = ({ isDisplayed }) => {
 }
 
 export default CardsList
-
-// <Card key={cardInfo.id} cardInfo={cardInfo} />
