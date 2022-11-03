@@ -6,9 +6,6 @@ const AddUser = () => {
   return (
     <div className='adduser-container'>
       <CardForm />
-      <Link className='nav-link' to='/'>
-        Home
-      </Link>
     </div>
   )
 }

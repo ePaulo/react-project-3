@@ -13,9 +13,6 @@ const Home = () => {
   return (
     <div className='home-container'>
       <CardsList isDisplayed={isDisplayed} />
-      <Link className='nav-link' to='/adduser'>
-        Add User
-      </Link>
     </div>
   )
 }
