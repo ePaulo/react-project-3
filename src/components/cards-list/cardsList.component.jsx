@@ -3,13 +3,17 @@ import { useContext } from 'react'
 import { CardsDataContext } from '../../contexts/cards-data.context'
 import Card from '../card/card.component'
 
-const CardsList = ({ isDisplayed }) => {
+const CardsList = ({ showCardInfo }) => {
   const { cardsInfo } = useContext(CardsDataContext)
 
   const cardsElement = cardsInfo.map(cardInfo => {
-    // console.log(cardInfo)
+    // console.log({ cardInfo.id }) // LOG
     return (
-      <Card key={cardInfo.id} cardInfo={cardInfo} isDisplayed={isDisplayed} />
+      <Card
+        key={cardInfo.id}
+        cardId={cardInfo.id}
+        showCardInfo={showCardInfo}
+      />
     )
   })
 

@@ -10,7 +10,7 @@ const CardsDataProvider = props => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(users => {
-        // console.log(users)
+        // LOG console.log(users)
         setCardsInfo(users)
       })
       .catch(errMsg => console.error(errMsg))
@@ -18,7 +18,11 @@ const CardsDataProvider = props => {
 
   const context = { cardsInfo, setCardsInfo }
 
-  return <CardsDataContext.Provider value={context}>{props.children}</CardsDataContext.Provider>
+  return (
+    <CardsDataContext.Provider value={context}>
+      {props.children}
+    </CardsDataContext.Provider>
+  )
 }
 
 export { CardsDataContext, CardsDataProvider }

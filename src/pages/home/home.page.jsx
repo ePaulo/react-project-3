@@ -1,9 +1,8 @@
 import './home.styles.scss'
-import { Link } from 'react-router-dom'
-import CardsList from '../../components/cards-list/cards-list.component'
+import CardsList from '../../components/cards-list/cardsList.component'
 
 const Home = () => {
-  const isDisplayed = {
+  const showCardInfo = {
     name: true,
     email: false,
     city: true,
@@ -12,7 +11,7 @@ const Home = () => {
   }
   return (
     <div className='home-container'>
-      <CardsList isDisplayed={isDisplayed} />
+      <CardsList showCardInfo={showCardInfo} />
     </div>
   )
 }
