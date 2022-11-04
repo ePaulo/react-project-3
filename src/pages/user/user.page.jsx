@@ -1,7 +1,9 @@
 import './user.styles.scss'
 import Card from '../../components/card/card.component'
+import { useParams } from 'react-router-dom'
 
 const User = () => {
+  const { id } = useParams()
   const showCardInfo = {
     name: true,
     email: true,
@@ -10,12 +12,9 @@ const User = () => {
     company: true,
   }
 
-  // HACK set cardId to 1 to initially see something
-  const cardId = 1
-
   return (
     <div className='user-container'>
-      <Card cardId={cardId} showCardInfo={showCardInfo} />
+      <Card cardId={+id} showCardInfo={showCardInfo} />
     </div>
   )
 }
@@ -23,4 +22,4 @@ const User = () => {
 export default User
 
 // DONE add card component
-// TODO add code for setting cardId
+// DONE add code for capturing cardId from URL param

@@ -5,9 +5,9 @@ import { CardsDataContext } from '../../contexts/cards-data.context'
 const Card = ({ cardId, showCardInfo }) => {
   const { cardsInfo } = useContext(CardsDataContext)
   console.log({ cardId }) // LOG
-  // cardsInfo.length && console.log(cardsInfo) // LOG
+  // !LOG cardsInfo.length && console.log(cardsInfo)
   const cardInfo = cardsInfo?.find(card => card.id === cardId)
-  // cardInfo && console.log(cardInfo) // LOG
+  // !LOG cardInfo && console.log(cardInfo)
   if (cardInfo) {
     const { name, email, address, website, company } = cardInfo
     const cardElement = (

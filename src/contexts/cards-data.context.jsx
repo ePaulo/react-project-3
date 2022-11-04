@@ -10,7 +10,7 @@ const CardsDataProvider = props => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(users => {
-        // LOG console.log(users)
+        // !LOG console.log(users)
         setCardsInfo(users)
       })
       .catch(errMsg => console.error(errMsg))

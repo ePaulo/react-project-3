@@ -7,7 +7,7 @@ const CardsList = ({ showCardInfo }) => {
   const { cardsInfo } = useContext(CardsDataContext)
 
   const cardsElement = cardsInfo.map(cardInfo => {
-    // console.log({ cardInfo.id }) // LOG
+    // !LOG console.log({ cardInfo.id })
     return (
       <Card
         key={cardInfo.id}
