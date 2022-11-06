@@ -1,10 +1,11 @@
 import './app.styles.scss'
-import { CardsDataProvider } from './contexts/cards-data.context'
+import { CardsDataProvider } from './contexts/cardsData.context'
 import { Routes, Route, Link } from 'react-router-dom'
-import Home from './pages/home/home.page'
-import User from './pages/user/user.page'
-import AddUser from './pages/adduser/adduser.page'
-import NotFound from './pages/notfound/notfound.page'
+import Home from './pages/home/Home.page'
+import User from './pages/user/User.page'
+import AddUser from './pages/addUser/AddUser.page'
+import NotFound from './pages/notFound/NotFound.page'
+import Search from './components/search/Search.component'
 
 function App() {
   return (
@@ -22,10 +23,8 @@ function App() {
                 Add User
               </Link>
             </li>
-            <li>
-              <input type='text' placeholder='enter search name' />
-            </li>
           </ul>
+          <Search />
         </nav>
         <Routes>
           <Route path='/' element={<Home />} />

@@ -1,13 +1,13 @@
 import './card.styles.scss'
 import { useContext } from 'react'
-import { CardsDataContext } from '../../contexts/cards-data.context'
+import { CardsDataContext } from '../../contexts/cardsData.context'
 
 const Card = ({ cardId, showCardInfo }) => {
   const { cardsInfo } = useContext(CardsDataContext)
   console.count(cardId) // LOG
-  // !LOG cardsInfo.length && console.log(cardsInfo)
+  // cardsInfo.length && console.log(cardsInfo) // !LOG
   const cardInfo = cardsInfo?.find(card => card.id === cardId)
-  // !LOG cardInfo && console.log(cardInfo)
+  // cardInfo && console.log(cardInfo) // !LOG
   if (cardInfo) {
     const { name, email, address, website, company } = cardInfo
     const cardElement = (
@@ -35,7 +35,6 @@ const Card = ({ cardId, showCardInfo }) => {
         )}
       </div>
     )
-
     return cardElement
   } else {
     return null

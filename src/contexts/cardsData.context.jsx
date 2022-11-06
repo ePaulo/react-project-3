@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from 'react'
-// import { cardsData } from '../data/cards.data'
 
 const CardsDataContext = createContext()
 

@@ -1,7 +1,7 @@
-import './cards-list.styles.scss'
+import './cardsList.styles.scss'
 import { useContext } from 'react'
-import { CardsDataContext } from '../../contexts/cards-data.context'
-import Card from '../card/card.component'
+import { CardsDataContext } from '../../contexts/cardsData.context'
+import Card from '../card/Card.component'
 
 const CardsList = ({ showCardInfo }) => {
   const { cardsInfo } = useContext(CardsDataContext)

@@ -1,5 +1,5 @@
 import './user.styles.scss'
-import Card from '../../components/card/card.component'
+import Card from '../../components/card/Card.component'
 import { useParams } from 'react-router-dom'
 
 const User = () => {

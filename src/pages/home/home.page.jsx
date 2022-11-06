@@ -1,5 +1,5 @@
 import './home.styles.scss'
-import CardsList from '../../components/cards-list/cardsList.component'
+import CardsList from '../../components/cardsList/CardsList.component'
 
 const Home = () => {
   const showCardInfo = {

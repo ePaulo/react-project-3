@@ -1,6 +1,6 @@
-import './card-form.styles.scss'
+import './cardForm.styles.scss'
 import { useState, useContext } from 'react'
-import { CardsDataContext } from '../../contexts/cards-data.context'
+import { CardsDataContext } from '../../contexts/cardsData.context'
 
 const CardForm = () => {
   const [name, setName] = useState('')
