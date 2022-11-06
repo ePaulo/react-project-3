@@ -2,7 +2,6 @@ import './app.styles.scss'
 import { CardsDataProvider } from './contexts/cards-data.context'
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/home/home.page'
-import Users from './pages/users/users.page'
 import User from './pages/user/user.page'
 import AddUser from './pages/adduser/adduser.page'
 import NotFound from './pages/notfound/notfound.page'
@@ -19,22 +18,21 @@ function App() {
               </Link>
             </li>
             <li>
-              <Link className='nav-link' to='/users'>
-                Users
+              <Link className='nav-link' to='/user/new'>
+                Add User
               </Link>
             </li>
             <li>
-              <Link className='nav-link' to='/adduser'>
-                Add User
-              </Link>
+              <input type='text' placeholder='enter search name' />
             </li>
           </ul>
         </nav>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/users' element={<Users />} />
-          <Route path='/users/:id' element={<User />} />
-          <Route path='/adduser' element={<AddUser />} />
+          <Route path='/user'>
+            <Route path='new' element={<AddUser />} />
+            <Route path=':id' element={<User />} />
+          </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>

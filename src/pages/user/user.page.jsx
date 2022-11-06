@@ -21,5 +21,6 @@ const User = () => {
 
 export default User
 
-// DONE add card component
-// DONE add code for capturing cardId from URL param
+// HACK added '+' to id to convert string to number
+// DONE use Card component
+// DONE add code to capture cardId from URL param

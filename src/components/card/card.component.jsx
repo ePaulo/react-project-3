@@ -4,7 +4,7 @@ import { CardsDataContext } from '../../contexts/cards-data.context'
 
 const Card = ({ cardId, showCardInfo }) => {
   const { cardsInfo } = useContext(CardsDataContext)
-  console.log({ cardId }) // LOG
+  console.count(cardId) // LOG
   // !LOG cardsInfo.length && console.log(cardsInfo)
   const cardInfo = cardsInfo?.find(card => card.id === cardId)
   // !LOG cardInfo && console.log(cardInfo)
@@ -43,3 +43,5 @@ const Card = ({ cardId, showCardInfo }) => {
 }
 
 export default Card
+
+// WHY? It appears that on page load (via browser refresh) the Card component is loading 6 times while I expected 2x.  But when I save the code in vscode, it loads twice...what I expected.  At this point, I assume it doesn't matter for React client-side SPA pages. - Paul, Nov 5, 2022
