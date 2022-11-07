@@ -1,41 +1,46 @@
 import './app.styles.scss'
-import { CardsDataProvider } from './contexts/cardsData.context'
 import { Routes, Route, Link } from 'react-router-dom'
-import Home from './pages/home/Home.page'
-import User from './pages/user/User.page'
-import AddUser from './pages/addUser/AddUser.page'
+import { useContext } from 'react'
+import { CardsDataContext } from './contexts/cardsData.context'
+
+// import CardsSearch from './components/cardsSearch/CardsSearch.component'
+import ListCards from './pages/listCards/ListCards.page'
+import ShowCard from './pages/showCard/ShowCard.page'
+import AddCard from './pages/addCard/AddCard.page'
 import NotFound from './pages/notFound/NotFound.page'
-import Search from './components/search/Search.component'
 
 function App() {
+  const { cardsInfo, setCardsInfo } = useContext(CardsDataContext)
+  // console.log(cardsInfo) // !LOG
+
+  const cardNames = cardsInfo.map(cardInfo => cardInfo.name)
+
   return (
-    <CardsDataProvider>
-      <div className='app-container'>
-        <nav>
-          <ul>
-            <li>
-              <Link className='nav-link' to='/'>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link className='nav-link' to='/user/new'>
-                Add User
-              </Link>
-            </li>
-          </ul>
-          <Search />
-        </nav>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/user'>
-            <Route path='new' element={<AddUser />} />
-            <Route path=':id' element={<User />} />
-          </Route>
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </div>
-    </CardsDataProvider>
+    <div className='app-container'>
+      <nav>
+        <ul>
+          <li>
+            <Link className='nav-link' to='/'>
+              List Cards
+            </Link>
+          </li>
+          <li>
+            <Link className='nav-link' to='/card/new'>
+              Add Card
+            </Link>
+          </li>
+        </ul>
+        {/* <CardsSearch names={cardNames} setNames={setCardsInfo} /> */}
+      </nav>
+      <Routes>
+        <Route path='/' element={<ListCards />} />
+        <Route path='/card'>
+          <Route path='new' element={<AddCard />} />
+          <Route path=':id' element={<ShowCard />} />
+        </Route>
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </div>
   )
 }
 
