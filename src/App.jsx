@@ -3,7 +3,6 @@ import { Routes, Route, Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { CardsDataContext } from './contexts/cardsData.context'
 
-// import CardsSearch from './components/cardsSearch/CardsSearch.component'
 import ListCards from './pages/listCards/ListCards.page'
 import ShowCard from './pages/showCard/ShowCard.page'
 import AddCard from './pages/addCard/AddCard.page'
@@ -30,7 +29,6 @@ function App() {
             </Link>
           </li>
         </ul>
-        {/* <CardsSearch names={cardNames} setNames={setCardsInfo} /> */}
       </nav>
       <Routes>
         <Route path='/' element={<ListCards />} />

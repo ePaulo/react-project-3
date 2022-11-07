@@ -12,10 +12,11 @@ const CardsSearch = ({ names, setNames }) => {
     const filteredNames = names.filter(name =>
       name.toLocaleLowerCase().includes(typedChars)
     )
+    console.log(filteredNames) // LOG
 
-    setNames(
-      allNames.filter(name => filteredNames.includes(name.toLocaleLowerCase()))
-    )
+    // setNames(
+    //   allNames.filter(name => filteredNames.includes(name.toLocaleLowerCase()))
+    // )
   }
 
   return (
