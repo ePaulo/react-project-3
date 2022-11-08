@@ -1,9 +1,12 @@
 import { createContext, useState, useEffect } from 'react'
 
-const CardsDataContext = createContext()
+const CardsDataContext = createContext({
+  cardsInfo: null,
+  setCardsInfo: () => null,
+})
 
 const CardsDataProvider = props => {
-  const [cardsInfo, setCardsInfo] = useState([])
+  const [cardsInfo, setCardsInfo] = useState(null)
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')

@@ -1,15 +1,28 @@
 .list-cards-container {
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  .filter {
+    input {
+      min-width: 270px;
+      background-color: lightblue;
+      margin-top: 5px;
+      border: 1px solid black;
+      padding: 10px;
+      font-size: 18px;
+    }
+  }
 
-  .card-link {
-    text-decoration: none;
+  .cards {
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    :hover {
-      background-color: antiquewhite;
+    .card-link {
+      text-decoration: none;
+
+      :hover {
+        background-color: antiquewhite;
+      }
     }
   }
 }

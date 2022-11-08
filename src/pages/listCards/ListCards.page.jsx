@@ -1,6 +1,6 @@
 import './listCards.styles.scss'
-import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { CardsDataContext } from '../../contexts/cardsData.context'
 import Card from '../../components/card/Card.component'
 
@@ -12,48 +12,75 @@ const showFields = {
   company: false,
 }
 
+// START ----------------------------------------------------
+// TODO get search feature working... integrated into ListCards page.
+// TODO remove CardsSearch component if/when no longer needed.
+// const FilterCards = () => {
+//   const [searchText, setSearchText] = useState('')
+//   const { cardsInfo } = useContext(CardsDataContext)
+
+//   const handleChange = event => {
+//     const typedChars = event.target.value.toLocaleLowerCase()
+//     setSearchText(typedChars)
+
+//     const filteredCards = cardsInfo.filter(cardInfo =>
+//       cardInfo.name.toLocaleLowerCase().includes(typedChars)
+//     )
+//   }
+
+//   return (
+//     <div className='filter-cards-component'>
+//       <input
+//         type='search'
+//         value={searchText}
+//         onChange={handleChange}
+//         placeholder='Filter by name: '
+//       />
+//     </div>
+//   )
+// }
+//END --------------------------------------------------------
+
 const ListCards = () => {
   const [searchText, setSearchText] = useState('')
   const { cardsInfo } = useContext(CardsDataContext)
 
-  // TODO get search feature working
-  const searchElement = () => {
-    const handleChange = event => {
-      const typedChars = event.target.value.toLocaleLowerCase()
-      setSearchText(typedChars)
-
-      const filteredCards = cardsInfo.filter(cardInfo =>
-        cardInfo.name.toLocaleLowerCase().includes(typedChars)
+  if (cardsInfo) {
+    const filteredCards = typedChars =>
+      cardsInfo.filter(card =>
+        card.name.toLocaleLowerCase().includes(typedChars.toLocaleLowerCase())
       )
+
+    const displayCards = cards =>
+      cards.map(card => (
+        <Link key={card.id} className='card-link' to={`/card/${card.id}`}>
+          <Card key={card.id} showFields={showFields} cardInfo={card} />
+        </Link>
+      ))
+
+    const handleChange = event => {
+      setSearchText(event.target.value)
     }
 
-    return (
-      <div className='cards-search-component'>
-        <input
-          type='search'
-          value={searchText}
-          onChange={handleChange}
-          placeholder='Search for name: '
-        />
-      </div>
+    const filterElement = (
+      <input
+        type='search'
+        value={searchText}
+        onChange={handleChange}
+        placeholder='Filter by name: '
+      />
     )
-  }
 
-  const cardsElement = cardsInfo.map(cardInfo => (
-    <Link key={cardInfo.id} className='card-link' to={`/card/${cardInfo.id}`}>
-      <Card key={cardInfo.id} showFields={showFields} cardInfo={cardInfo} />
-    </Link>
-  ))
+    const cardsElement = displayCards(filteredCards(searchText))
 
-  if (cardsElement) {
     return (
       <div className='list-cards-container'>
-        {searchElement()}
-        {cardsElement}
+        <div className='filter'>{filterElement}</div>
+        <div className='cards'>{cardsElement}</div>
       </div>
     )
   } else {
-    return null
+    return <div>loading...</div>
   }
 }
 

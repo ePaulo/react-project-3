@@ -7,10 +7,10 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <CardsDataProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <CardsDataProvider>
         <App />
-      </BrowserRouter>
-    </CardsDataProvider>
+      </CardsDataProvider>
+    </BrowserRouter>
   </React.StrictMode>
 )
