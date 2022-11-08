@@ -63,12 +63,17 @@ const ListCards = () => {
     }
 
     const filterElement = (
-      <input
-        type='search'
-        value={searchText}
-        onChange={handleChange}
-        placeholder='Filter by name: '
-      />
+      <>
+        <input
+          type='search'
+          value={searchText}
+          onChange={handleChange}
+          placeholder='Filter by name: '
+        />
+        <span>{`Cards found: ${
+          filteredCards(searchText).length || 'none'
+        }`}</span>
+      </>
     )
 
     const cardsElement = displayCards(filteredCards(searchText))

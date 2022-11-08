@@ -8,6 +8,13 @@
       padding: 10px;
       font-size: 18px;
     }
+    input:focus {
+      background-color: antiquewhite;
+    }
+    span {
+      margin-left: 5px;
+      font-size: 18px;
+    }
   }
 
   .cards {
