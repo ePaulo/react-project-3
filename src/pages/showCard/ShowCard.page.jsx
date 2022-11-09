@@ -1,5 +1,5 @@
 import './showCard.styles.scss'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import { CardsDataContext } from '../../contexts/cardsData.context'
 import Card from '../../components/card/Card.component'
@@ -12,11 +12,14 @@ const showFields = {
   company: true,
 }
 
-const ShowCard = () => {
-  const { cardsInfo } = useContext(CardsDataContext)
+const ShowCard = props => {
   const { id } = useParams()
+  const { cardsInfo } = useContext(CardsDataContext)
+
+  if (!cardsInfo) return null
 
   const cardInfo = cardsInfo.find(card => card.id === +id)
+
   if (cardInfo) {
     return (
       <div className='show-card-container'>
@@ -24,10 +27,10 @@ const ShowCard = () => {
       </div>
     )
   } else {
-    return null
+    return <Navigate to='notfound' />
   }
 }
 
 export default ShowCard
 
-// HACK added '+' to id to convert string to number
+// HACK added '+' to param id to convert string to number

@@ -16,6 +16,7 @@ function App() {
         <Route path='/card'>
           <Route path='new' element={<AddCard />} />
           <Route path=':id' element={<ShowCard />} />
+          <Route path='*' element={<NotFound />} />
         </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>

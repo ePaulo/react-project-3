@@ -28,7 +28,6 @@ const CardsDataProvider = props => {
   }, [])
 
   const context = { cardsInfo, setCardsInfo }
-  // console.log(context.cardsInfo) // !LOG
 
   return (
     <CardsDataContext.Provider value={context}>
