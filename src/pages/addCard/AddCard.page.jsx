@@ -1,5 +1,5 @@
 import './addCard.styles.scss'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { CardsDataContext } from '../../contexts/cardsData.context'
 import uuid from 'react-uuid'
 
@@ -10,8 +10,9 @@ const AddCard = () => {
   const [website, setWebsite] = useState('')
   const [company, setCompany] = useState('')
   const [missingValues, setMissingValues] = useState([])
+  const [cardAdded, setCardAdded] = useState(false)
 
-  const { cardsInfo, setCardsInfo } = useContext(CardsDataContext)
+  const { setCardsInfo } = useContext(CardsDataContext)
 
   const resetForm = () => {
     setName('')
@@ -19,7 +20,10 @@ const AddCard = () => {
     setCity('')
     setWebsite('')
     setCompany('')
+    setCardAdded(false)
   }
+
+  const allInputsFilled = () => name && email && city && website && company
 
   const findEmptyInputs = () => {
     const emptyInputs = []
@@ -36,7 +40,7 @@ const AddCard = () => {
 
     findEmptyInputs()
 
-    if (name && email && city && website && company) {
+    if (allInputsFilled()) {
       setCardsInfo(prevCards => [
         ...prevCards,
         {
@@ -48,7 +52,10 @@ const AddCard = () => {
           company,
         },
       ])
-      resetForm()
+      setCardAdded(true)
+      setTimeout(() => {
+        resetForm()
+      }, 5000)
     }
   }
 
@@ -96,6 +103,11 @@ const AddCard = () => {
           Please insert a {missingValue} value
         </p>
       ))}
+      {cardAdded && (
+        <div className='success-message'>
+          Card successfully added to cards list.
+        </div>
+      )}
     </form>
   )
 

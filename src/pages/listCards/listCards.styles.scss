@@ -17,6 +17,16 @@
     }
   }
 
+  .select {
+    width: 270px;
+    margin-top: 10px;
+
+    option {
+      padding: 5px;
+      font-size: 16px;
+    }
+  }
+
   .cards {
     margin: 0 auto;
     padding: 20px;

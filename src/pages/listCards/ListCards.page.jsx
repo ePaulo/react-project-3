@@ -1,5 +1,6 @@
 import './listCards.styles.scss'
 import { useState, useContext } from 'react'
+import Select from 'react-select'
 import { Link } from 'react-router-dom'
 import { CardsDataContext } from '../../contexts/cardsData.context'
 import Card from '../../components/card/Card.component'
@@ -12,45 +13,63 @@ const showFields = {
   company: false,
 }
 
-// START ----------------------------------------------------
-// TODO get search feature working... integrated into ListCards page.
-// TODO remove CardsSearch component if/when no longer needed.
-// const FilterCards = () => {
-//   const [searchText, setSearchText] = useState('')
-//   const { cardsInfo } = useContext(CardsDataContext)
-
-//   const handleChange = event => {
-//     const typedChars = event.target.value.toLocaleLowerCase()
-//     setSearchText(typedChars)
-
-//     const filteredCards = cardsInfo.filter(cardInfo =>
-//       cardInfo.name.toLocaleLowerCase().includes(typedChars)
-//     )
-//   }
-
-//   return (
-//     <div className='filter-cards-component'>
-//       <input
-//         type='search'
-//         value={searchText}
-//         onChange={handleChange}
-//         placeholder='Filter by name: '
-//       />
-//     </div>
-//   )
-// }
-//END --------------------------------------------------------
-
 const ListCards = () => {
-  const [searchText, setSearchText] = useState('')
+  const [searchName, setSearchName] = useState('')
+  const [selectCity, setSelectCity] = useState('')
   const { cardsInfo } = useContext(CardsDataContext)
 
   if (cardsInfo) {
-    const filteredCards = typedChars =>
+    // ---------- Filter Cards ----------
+    const filterByName = inputChars =>
       cardsInfo.filter(card =>
-        card.name.toLocaleLowerCase().includes(typedChars.toLocaleLowerCase())
+        card.name.toLocaleLowerCase().includes(inputChars.toLocaleLowerCase())
       )
 
+    const handleInputChange = input => {
+      setSearchName(input.target.value.toLocaleLowerCase())
+    }
+
+    const filterElement = (
+      <>
+        <input
+          type='search'
+          value={searchName}
+          onChange={handleInputChange}
+          placeholder='Filter by name: '
+        />
+        <span>{`Cards found: ${
+          filterByName(searchName).length || 'none'
+        }`}</span>
+      </>
+    )
+
+    // ---------- Select City ----------
+    const options = cards =>
+      cards.map(card => {
+        return {
+          id: card.id,
+          value: card.city,
+          label: card.city,
+        }
+      })
+
+    const handleSelectChange = selectedCity => {
+      setSelectCity(selectedCity.value.toLocaleLowerCase())
+    }
+
+    const selectElement = (
+      <>
+        <label>
+          Select City:
+          <Select
+            options={options(filterByName(searchName))}
+            onChange={handleSelectChange}
+          />
+        </label>
+      </>
+    )
+
+    // ---------- Display Cards ----------
     const displayCards = cards =>
       cards.map(card => (
         <Link key={card.id} className='card-link' to={`/card/${card.id}`}>
@@ -58,29 +77,28 @@ const ListCards = () => {
         </Link>
       ))
 
-    const handleChange = event => {
-      setSearchText(event.target.value)
+    const filteredCards = () => {
+      let cards = Array.from(cardsInfo)
+      if (searchName) {
+        cards = cards.filter(card =>
+          card.name.toLocaleLowerCase().includes(searchName)
+        )
+      }
+      if (selectCity) {
+        cards = cards.filter(
+          card => card.city.toLocaleLowerCase() === selectCity
+        )
+      }
+
+      return cards
     }
 
-    const filterElement = (
-      <>
-        <input
-          type='search'
-          value={searchText}
-          onChange={handleChange}
-          placeholder='Filter by name: '
-        />
-        <span>{`Cards found: ${
-          filteredCards(searchText).length || 'none'
-        }`}</span>
-      </>
-    )
-
-    const cardsElement = displayCards(filteredCards(searchText))
+    const cardsElement = displayCards(filteredCards())
 
     return (
       <div className='list-cards-container'>
         <div className='filter'>{filterElement}</div>
+        <div className='select'>{selectElement}</div>
         <div className='cards'>{cardsElement}</div>
       </div>
     )

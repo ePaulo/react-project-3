@@ -18,12 +18,12 @@ const ShowCard = props => {
 
   if (!cardsInfo) return null
 
-  const cardInfo = cardsInfo.find(card => card.id === +id)
+  const cardInfo = cardsInfo.find(card => card.id.toString() === id)
 
   if (cardInfo) {
     return (
       <div className='show-card-container'>
-        <Card key={+id} showFields={showFields} cardInfo={cardInfo} />
+        <Card key={id} showFields={showFields} cardInfo={cardInfo} />
       </div>
     )
   } else {
@@ -32,5 +32,3 @@ const ShowCard = props => {
 }
 
 export default ShowCard
-
-// HACK added '+' to param id to convert string to number
