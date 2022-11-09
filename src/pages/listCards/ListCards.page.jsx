@@ -37,9 +37,7 @@ const ListCards = () => {
           onChange={handleInputChange}
           placeholder='Filter by name: '
         />
-        <span>{`Cards found: ${
-          filterByName(searchName).length || 'none'
-        }`}</span>
+        <span>{`Cards: ${filterByName(searchName).length || 'none'}`}</span>
       </>
     )
 
@@ -58,15 +56,11 @@ const ListCards = () => {
     }
 
     const selectElement = (
-      <>
-        <label>
-          Select City:
-          <Select
-            options={options(filterByName(searchName))}
-            onChange={handleSelectChange}
-          />
-        </label>
-      </>
+      <Select
+        defaultValue={{ id: 0, value: '', label: 'Select City:' }}
+        options={options(filterByName(searchName))}
+        onChange={handleSelectChange}
+      />
     )
 
     // ---------- Display Cards ----------
@@ -95,10 +89,25 @@ const ListCards = () => {
 
     const cardsElement = displayCards(filteredCards())
 
+    // ---------- Reset Card Search ----------
+    const handleResetClick = event => {
+      setSearchName('')
+      setSelectCity('')
+    }
+
+    const buttonElement = (
+      <button type='button' onClick={handleResetClick}>
+        Reset Filters
+      </button>
+    )
+
+    // ---------- End of page elements ----------
+
     return (
       <div className='list-cards-container'>
         <div className='filter'>{filterElement}</div>
         <div className='select'>{selectElement}</div>
+        <div className='reset-button'>{buttonElement}</div>
         <div className='cards'>{cardsElement}</div>
       </div>
     )

@@ -18,12 +18,13 @@
   }
 
   .select {
+    // background: lightblue; // TODO set background color
     width: 270px;
     margin-top: 10px;
+    font-size: 20px;
 
     option {
       padding: 5px;
-      font-size: 16px;
     }
   }
 
@@ -40,6 +41,22 @@
       :hover {
         background-color: antiquewhite;
       }
+    }
+  }
+
+  .reset-button {
+    display: inline-block;
+    background-color: lightblue;
+    margin-top: 10px;
+
+    :hover {
+      background-color: antiquewhite;
+    }
+
+    button {
+      background-color: inherit;
+      padding: 15px;
+      border: 1px solid black;
     }
   }
 }
