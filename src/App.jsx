@@ -1,5 +1,5 @@
 import './app.styles.scss'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Nav from './components/nav/Nav.component'
 
 import ListCards from './pages/listCards/ListCards.page'
